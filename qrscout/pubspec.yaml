@@ -27,6 +27,7 @@ dependencies:
   http: ^0.13.5
   share_extend: ^2.0.0
   settings_ui: ^2.0.2
+  firebase_database: ^10.0.6
   # google_sign_in: 5.3.3
   # sign_in_with_apple: 4.0.0
   # crypto: 3.0.1
