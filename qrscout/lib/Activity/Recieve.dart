@@ -16,7 +16,6 @@ class _RecieveScreenState extends State<RecieveScreen> {
   void initState() {
     super.initState();
     AuthService().updateUserRecievingState(true);
-    print(url);
   }
 
   @override
