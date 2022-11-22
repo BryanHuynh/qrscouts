@@ -26,8 +26,10 @@ class AuthService {
     await FirebaseAuth.instance.signOut();
   }
 
-  Future<void> updateUserRecievingState(bool state) async {
+  Future<void> updateUserRecievingState(
+      {required bool state, String password = ''}) async {
     final ref = rtDatabase.ref().child('users/${user?.uid}');
-    await ref.update({'recieving': state});
+
+    await ref.update({'recieving': state, 'password': password});
   }
 }

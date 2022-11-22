@@ -14,7 +14,7 @@ export default function Home() {
   const [cameraDevice, setCameraDevice] = React.useState(false);
   const [hostRecieving, setHostRecieving] = React.useState(false);
   const router = useRouter()
-  const { id } = router.query
+  const { id, key } = router.query
 
   React.useEffect(() => {
     setWidth(window.innerWidth);
@@ -36,14 +36,22 @@ export default function Home() {
     facingMode: cameraDevice ? "user" : "environment"
   };
 
-  realtime.ref('users/' + id ).on('value', (snapshot: any) => {
-    if(snapshot.val() != null && snapshot.val().recieving != null){
-      const recieving = snapshot.val().recieving;
-      if(hostRecieving != recieving){
-        setHostRecieving(recieving);
+  React.useEffect(() => {
+    if(!id || !key) return;
+    realtime.ref('users/' + id ).on('value', (snapshot) => {
+      if(snapshot.val()) {
+        const recieving = snapshot.val().recieving;
+        const recievingKey = snapshot.val().password;
+        if(recievingKey != key) return;
+        if(hostRecieving != recieving){
+          setHostRecieving(recieving);
+        }
       }
-    }
-  })
+    })
+
+  }, [id, key]);
+
+
 
   
 
