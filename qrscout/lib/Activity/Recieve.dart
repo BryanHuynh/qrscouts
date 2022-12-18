@@ -27,7 +27,7 @@ class _RecieveScreenState extends State<RecieveScreen> {
     // generate a random password
     final String password = generateRandomString(15);
     url =
-        'http://localhost:3000/session/${AuthService().user?.uid}?key=$password';
+        'https://qrscout-web.vercel.app/session/${AuthService().user?.uid}?key=$password';
     AuthService().updateUserRecievingState(state: true, password: password);
     print(url);
   }
